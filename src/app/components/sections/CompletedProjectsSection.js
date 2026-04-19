@@ -108,7 +108,7 @@ export default function CompletedProjectsSection() {
               <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-[#7f7860]">
                 Selected Work
               </p>
-              <h2 className="text-4xl font-extrabold tracking-tight text-[#2f2a18] md:text-5xl">
+              <h2 className="text-4xl font-semibold tracking-tight text-[#2f2a18] md:text-5xl">
                 Completed
               </h2>
             </div>
