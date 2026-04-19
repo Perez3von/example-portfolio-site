@@ -1,81 +1,55 @@
-PORTFOLIO WEBSITE SETUP GUIDE
+PORTFOLIO WEBSITE SETUP GUIDE (GITHUB PAGES VERSION)
 
-This guide explains two ways to start the project:
+This guide explains how to:
 
-1. Using a ZIP file (easiest)
-2. Using GitHub clone (recommended long-term)
+1. Clone the project
+2. Run it locally
+3. Push it to your own GitHub
+4. Deploy it for FREE using GitHub Pages
 
 ========================
-OPTION 1 — USING THE ZIP
-========================
-
-Step 1 — Extract the ZIP
-
-- Right click the ZIP file
-- Click "Extract All"
-- Open the extracted folder
-
-IMPORTANT:
-Make sure you are inside the folder that contains:
-package.json
-
-Step 2 — Open the project
-
-- Open the folder in VS Code (or any code editor)
-
-Step 3 — Open terminal
-
-- In VS Code: Terminal → New Terminal
-
-Step 4 — Install dependencies
-Run:
-npm install
-
-Step 5 — Run the project
-Run:
-npm run dev
-
-Step 6 — Open the site
-Go to:
-http://localhost:3000
-
-===========================
-OPTION 2 — CLONE FROM GITHUB
-===========================
-
-Step 1 — Clone the repo
-Run:
-git clone https://github.com/REPLACE-WITH-REPO.git
-cd REPLACE-WITH-REPO
-
-Step 2 — Install dependencies
-Run:
-npm install
-
-Step 3 — Run the project
-Run:
-npm run dev
-
-Step 4 — Open the site
-Go to:
-http://localhost:3000
-
-================
 REQUIREMENTS
-================
+========================
 
-Install:
+Install these first:
 
 - Node.js (version 18 or newer)
-- Git (only needed for cloning or uploading)
+- Git
 
 Check installation:
+
 node -v
 npm -v
 git --version
 
 ========================
-EDITING YOUR CONTENT
+
+1. # CLONE THE PROJECT
+
+Run:
+
+git clone https://github.com/REPLACE-WITH-REPO.git
+cd REPLACE-WITH-REPO
+
+======================== 2. INSTALL DEPENDENCIES
+========================
+
+Run:
+
+npm install
+
+======================== 3. RUN LOCALLY
+========================
+
+Run:
+
+npm run dev
+
+Then open:
+
+http://localhost:3000
+
+======================== 4. EDIT YOUR CONTENT
 ========================
 
 Main files to update:
@@ -84,98 +58,160 @@ Main files to update:
 - BackgroundSection.js → about section
 - ToolkitSection.js → skills and tools
 - CompletedProjectsSection.js → completed projects
-- WorkInProgressSection.js → work-in-progress projects
-- ProjectCard.js → project preview
+- WorkInProgressSection.js → WIP projects
+- ProjectCard.js → project cards
 - ProjectModal.js → project details
 
-==============================
-ADDING IMAGES AND RESUME
-==============================
+Update text, links, images, and resume.
+
+======================== 5. ADD IMAGES & RESUME
+========================
 
 Place files inside:
+
 public/
 
 Example:
+
 public/
 profile.png
 project1.png
 resume.pdf
 
-Use them like this:
+Use them like:
+
 src="/profile.png"
 href="/resume.pdf"
 
-==============================
-PUSH TO YOUR OWN GITHUB
-==============================
+======================== 6. PUSH TO YOUR OWN GITHUB
+========================
 
-Step 1 — Create a new empty repo on GitHub
+Create a new empty repo on your GitHub first.
 
-Step 2 — Run:
+Then run:
 
-git init
-git add .
-git commit -m "Initial commit"
-git branch -M main
+git remote remove origin
 git remote add origin https://github.com/YOUR-USERNAME/YOUR-REPO.git
+
+git add .
+git commit -m "Initial portfolio"
+git branch -M main
 git push -u origin main
 
+======================== 7. ENABLE GITHUB PAGES
 ========================
-DEPLOY YOUR SITE (FREE)
-========================
 
-Use Vercel
+⚠️ Next.js requires a static export for GitHub Pages.
 
-Steps:
+---
 
-1. Go to Vercel
-2. Sign in with GitHub
-3. Click "Add New Project"
-4. Import your repository
-5. Click Deploy
+## STEP 1 — UPDATE next.config.js
 
-You will get a live URL like:
-https://your-site.vercel.app
+Create or edit next.config.js:
 
-========================
-UPDATING YOUR SITE
-========================
+module.exports = {
+output: "export",
+images: {
+unoptimized: true,
+},
+};
+
+---
+
+## STEP 2 — ADD BUILD COMMAND
 
 Run:
+
+npm run build
+
+This will create a folder:
+
+out/
+
+---
+
+## STEP 3 — DEPLOY TO GH PAGES
+
+Install gh-pages:
+
+npm install gh-pages --save-dev
+
+Then add this to package.json:
+
+"scripts": {
+"dev": "next dev",
+"build": "next build",
+"export": "next build",
+"deploy": "gh-pages -d out"
+}
+
+Then run:
+
+npm run build
+npm run deploy
+
+---
+
+## STEP 4 — ENABLE PAGES IN GITHUB
+
+Go to your repo → Settings → Pages
+
+Set:
+Source = gh-pages branch
+
+---
+
+## STEP 5 — YOUR SITE
+
+Your site will be live at:
+
+https://YOUR-USERNAME.github.io/YOUR-REPO/
+
+======================== 8. UPDATING YOUR SITE
+========================
+
+After making changes:
+
 git add .
-git commit -m "Update"
+git commit -m "update"
 git push
 
-Vercel will automatically redeploy your site.
+Then redeploy:
+
+npm run build
+npm run deploy
 
 ========================
 COMMON ISSUES
 ========================
 
-1. npm not working
-   → Install Node.js
-
-2. Images not showing
-   → Make sure they are inside public/ and used like:
+1. Images not showing
+   → Use paths like:
    "/image.png"
+   → Make sure they are in public/
 
-3. Site not loading
-   → Run:
-   npm run dev
+2. Site looks broken on GitHub Pages
+   → Make sure:
+   output: "export" is set
+   → Re-run build + deploy
 
-4. Wrong folder
-   → Make sure you are inside the folder with:
+3. Wrong folder
+   → You must be inside folder with:
    package.json
+
+4. Build fails
+   → Run:
+   npm install
 
 ========================
 RECOMMENDED WORKFLOW
 ========================
 
-1. Run project locally
-2. Customize content
-3. Add images and resume
-4. Push to GitHub
-5. Deploy on Vercel
+1. Clone repo
+2. Run locally
+3. Customize content
+4. Push to your GitHub
+5. Build + deploy to GitHub Pages
 
 ========================
 FINAL CHECKLIST
@@ -186,5 +222,6 @@ FINAL CHECKLIST
 - Content updated
 - Images added
 - Resume added
-- GitHub repo created
-- Site deployed
+- Repo pushed to GitHub
+- GitHub Pages enabled
+- Site live
