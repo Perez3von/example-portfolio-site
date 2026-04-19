@@ -79,7 +79,7 @@ const projects = [
 export default function CompletedProjectsSection() {
   const [selectedProject, setSelectedProject] = useState(null);
   const scrollRef = useRef(null);
-  const showArrows = projects.length > 1;
+  const showArrows = true;
 
   useEffect(() => {
     document.body.style.overflow = selectedProject ? "hidden" : "";
@@ -114,21 +114,21 @@ export default function CompletedProjectsSection() {
             </div>
 
             {showArrows && (
-              <div className="hidden justify-end gap-3 md:flex">
+              <div className="flex justify-end gap-2 md:gap-3">
                 <button
                   type="button"
                   onClick={() => scrollByAmount("left")}
-                  className="flex h-11 w-11 items-center justify-center rounded-full border border-black/10 bg-white/70 text-[#4a4632] shadow-sm transition hover:bg-white"
+                  className="flex h-9 w-9 md:h-11 md:w-11 items-center justify-center rounded-full border border-black/10 bg-white/70 text-[#4a4632] shadow-sm transition hover:bg-white active:scale-95"
                 >
-                  ←
+                  <span className="text-sm md:text-base">←</span>
                 </button>
 
                 <button
                   type="button"
                   onClick={() => scrollByAmount("right")}
-                  className="flex h-11 w-11 items-center justify-center rounded-full border border-black/10 bg-white/70 text-[#4a4632] shadow-sm transition hover:bg-white"
+                  className="flex h-9 w-9 md:h-11 md:w-11 items-center justify-center rounded-full border border-black/10 bg-white/70 text-[#4a4632] shadow-sm transition hover:bg-white active:scale-95"
                 >
-                  →
+                  <span className="text-sm md:text-base">→</span>
                 </button>
               </div>
             )}
