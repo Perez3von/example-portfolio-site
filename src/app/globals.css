@@ -24,3 +24,14 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+.mesh-gradient-bg {
+  background-color: #fff9eb;
+  background-image:
+    radial-gradient(at 0% 0%, #C9B6E4 0px, transparent 60%),
+    radial-gradient(at 80% 0%, #B8CFD6 0px, transparent 60%),
+    radial-gradient(at 100% 100%, #B8CFD6 0px, transparent 60%),
+    radial-gradient(at 0% 100%, #B8CFD6 0px, transparent 60%),
+    radial-gradient(at 50% 50%, #FAD0B1 0px, transparent 40%);
+  background-attachment: fixed;
+}
